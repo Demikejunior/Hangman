@@ -16,9 +16,9 @@ public class HangmanConsoleWindow {
 
 	private static final int WINDOW_WIDTH = 700;
 	private static final int WINDOW_HEIGHT = 600;
-	private static final Color BACKGROUND_COLOR = Color.WHITE;
-	private static final Color TEXT_COLOR = Color.BLUE;
-	private static final String FONT = "Bradley Hand ITC";
+	private static final Color BACKGROUND_COLOR = Color.BLACK;
+	private static final Color TEXT_COLOR = Color.WHITE;
+	private static final String FONT = "Lucida Console";
 	private static final int FONT_SIZE = 40;
 	private static final String TITLE = "Hangman Console Window";
 

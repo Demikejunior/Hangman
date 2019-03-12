@@ -14,8 +14,16 @@ public class HangGame {
 		hcw.println("Välkommen till hängagubben! \r\n" + "Du har " + lives + " liv");
 		word = initWord;
 		reverseWord = reverse(initWord);
-		lives = 9;
+		lives = 0;
 		
+	}
+	
+	public int lives() {
+		return lives;
+	}
+	
+	public static void loseLife() {
+		lives--;
 	}
 	
 	public static void print(String tP) {
@@ -28,12 +36,6 @@ public class HangGame {
 	
 	public static void println() {
 		hcw.println();
-	}
-	
-	public static void paint() {
-		
-		
-		
 	}
 	
 	private static String reverse(String toReverse) {
@@ -73,13 +75,60 @@ public class HangGame {
 		}
 		if (!exist) {
 			hcw.println("Du gissade fel!");
-			lives--;
+			loseLife();
 			paint();
 		} else {
 			hcw.println("Du gissade rätt!");
 			paint();
 		}
 		
+	}
+	
+	public static void show() {
+		if (!reverseWord.equals(word)) {
+			hcw.println(reverseWord);
+		} else {
+			hcw.println("DU HAR VUNNIT!");
+		}
+	}
+	
+	public static void paint() {
+		hcw.clear();
+		
+		String obj = "";
+		
+		switch (lives) {
+		case -1:
+			obj += "(Yay!) ___      \n";
+			obj += "    \\ /^ ^\\   \n";
+			obj += "      \\_U_/    \n";
+			obj += "     \\  |  /   \n";
+			obj += "      \\_|_/    \n";
+			obj += "        |       \n";
+			obj += "       / \\     \n";
+			obj += "      /   \\    \n";
+			obj += "     /     \\   \n";
+			obj += "   ___________  \n";
+			obj += " CONGRATULATIONS\n";
+			obj += "     YOU WON      ";
+			
+			break;
+		case 0:
+			obj += "    ______          \n";
+			obj += "   |/     |          \n";
+			obj += "   |      |          \n";
+			obj += "   |      |          \n";
+			obj += "   |      |          \n";
+			obj += "  /|\\___  X  __    \n";
+			obj += " |       /|\\   |   \n";
+			obj += " |       / \\   |   \n";
+			obj += " |   DU  DOG   |   \n";
+
+		default:
+			break;
+		}
+
+		hcw.print(obj);
 	}
 	
 }
