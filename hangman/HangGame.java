@@ -298,6 +298,9 @@ public class HangGame {
 				hcw.println("Gissa på en bokstav");
 			}
 			guess();
+		} else {
+			hcw.nextChar();
+			hcw.exit();
 		}
 
 	}
