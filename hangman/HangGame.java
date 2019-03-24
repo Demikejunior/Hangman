@@ -1,57 +1,60 @@
 package hangman;
 
-
 public class HangGame {
-	
+
 	public static String word;
 	public static String reverseWord;
 	public static int lives;
 	public static HangmanConsoleWindow hcw;
-	
+	public static String guessed = "";
+
 	public HangGame(String initWord) {
-		
+
 		hcw = new HangmanConsoleWindow();
 		lives = 11;
-		hcw.println("Välkommen till hängagubben! \r\n" + "Du har " + lives + " liv");
-		word = initWord;
+		word = initWord.toLowerCase();
 		reverseWord = reverse(initWord);
-		
-		for (int i = lives; i > 0; i++) {
-			paint();
-			loseLife();
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+		hcw.println("Välkommen till hänga gubben! \r\n" + "Du har " + lives + " liv" + "\n"
+				+ "Klicka på en knapp för att gå vidare");
+		hcw.nextChar();
+		paint();
 
-			}
-		}
-		
+//		for (int i = lives; i > 0; i++) {
+//			paint();
+//			loseLife();
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//
+//			}
+//		}
+
 	}
-	
+
 	public int lives() {
 		return lives;
 	}
-	
+
 	private static void loseLife() {
 		lives--;
 	}
-	
+
 	public static void print(String tP) {
 		hcw.print(tP);
 	}
-	
+
 	public static void println(String tP) {
 		hcw.println(tP);
 	}
-	
+
 	public static void println() {
 		hcw.println();
 	}
-	
+
 	private static String reverse(String toReverse) {
-		
+
 		String reversed = "";
-		
+
 		for (int i = 0; i < toReverse.length(); i++) {
 			if (toReverse.charAt(i) != ' ') {
 				reversed += '-';
@@ -59,54 +62,77 @@ public class HangGame {
 				reversed += ' ';
 			}
 		}
-		
+
 		return reversed;
-		
+
 	}
-	
-	public static void guess(char g) {
-		boolean exist = false;
-		for (int i = 0; i < word.length(); i++) {
-			if (g == word.charAt(i)) {
-				exist = true;
-				String s = "";
-				if (i != 0) {
-					s += reverseWord.substring(0, i - 1);
+
+	public static void guess() {
+
+		String G = hcw.nextString().toLowerCase();
+
+		if (G.length() == 1) {
+			char g = G.charAt(0);
+			boolean exist = false;
+			guessed += g + " ";
+			for (int i = 0; i < word.length(); i++) {
+				if (g == word.charAt(i)) {
+					exist = true;
+					String s = "";
+
+					if (i > 0) {
+						s += reverseWord.substring(0, i);
+					}
+
+					s += g;
+
+					if (i <= word.length() - 1) {
+						s += reverseWord.substring(i + 1);
+					}
+
+					reverseWord = s;
 				}
-				
-				s += g;
-				
-				if (word.length() != i) {
-					s += reverseWord.substring(i + 1);
-				}
-				
-				reverseWord = s;
+
+			}
+			if (exist) {
+				paint("Du gissade rätt!");
+			} else {
+				loseLife();
+				paint("Du gissade fel!");
+			}
+		} else {
+			if (G.equals(word)) {
+				win();
+			} else {
+				hcw.println("Gissa bokstäver istället");
+				guess();
 			}
 		}
-		if (!exist) {
-			hcw.println("Du gissade fel!");
-			loseLife();
-			paint();
-		} else {
-			hcw.println("Du gissade rätt!");
-			paint();
-		}
-		
+
 	}
-	
+
+	private static void win() {
+		lives = -1;
+		paint();
+	}
+
 	public static void show() {
 		if (!reverseWord.equals(word)) {
 			hcw.println(reverseWord);
 		} else {
-			hcw.println("DU HAR VUNNIT!");
+			win();
 		}
 	}
-	
+
 	public static void paint() {
+		paint("");
+	}
+
+	public static void paint(String message) {
 		hcw.clear();
-		
+
 		String obj = "";
-		
+
 		switch (lives) {
 		case -1:
 			obj += "(Yay!) ___      \n";
@@ -121,7 +147,6 @@ public class HangGame {
 			obj += "   ___________  \n";
 			obj += " CONGRATULATIONS\n";
 			obj += "     YOU WON      ";
-			
 			break;
 		case 0:
 			obj += "    ______         \n";
@@ -255,13 +280,24 @@ public class HangGame {
 			obj += "\n";
 			obj += "\n";
 			break;
-		
 
 		default:
 			break;
 		}
+		
 
-		hcw.print(obj);
+		hcw.println(obj);
+		if (lives != -1) {
+			hcw.println(message);
+			show();
+			if (guessed.length() > 0) {
+				hcw.println("Du har gissat på " + guessed);
+			} else {
+				hcw.println("Gissa på en bokstav");
+			}
+			guess();
+		}
+
 	}
-	
+
 }

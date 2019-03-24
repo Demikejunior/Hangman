@@ -14,8 +14,8 @@ import javax.swing.*;
  */
 public class HangmanConsoleWindow {
 
-	private static final int WINDOW_WIDTH = 700;
-	private static final int WINDOW_HEIGHT = 600;
+	private static final int WINDOW_WIDTH = 1000;
+	private static final int WINDOW_HEIGHT = 900;
 	private static final Color BACKGROUND_COLOR = Color.BLACK;
 	private static final Color TEXT_COLOR = Color.WHITE;
 	private static final String FONT = "Lucida Console";
