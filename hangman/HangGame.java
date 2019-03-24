@@ -56,10 +56,12 @@ public class HangGame {
 		String reversed = "";
 
 		for (int i = 0; i < toReverse.length(); i++) {
-			if (toReverse.charAt(i) != ' ') {
+			if (toReverse.charAt(i) != ' ' && toReverse.charAt(i) != ',') {
 				reversed += '-';
-			} else {
+			} else if (toReverse.charAt(i) != ',') {
 				reversed += ' ';
+			} else {
+				reversed += ',';
 			}
 		}
 
@@ -287,7 +289,7 @@ public class HangGame {
 		
 
 		hcw.println(obj);
-		if (lives != -1) {
+		if (lives > 0) {
 			hcw.println(message);
 			show();
 			if (guessed.length() > 0) {
