@@ -160,6 +160,8 @@ public class HangGame {
 			obj += " |       /|\\   |  \n";
 			obj += " |       / \\   |  \n";
 			obj += " |   DU  DOG   |   \n";
+			obj += "\n";
+			obj += " Ordet var: " + word;
 			break;
 		case 1:
 			obj += "    ______         \n";
