@@ -14,10 +14,21 @@ public class Play {
 		fill("hangman/words.txt");
 
 		Random generator = new Random();
-
-		HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]);
-
-		hg.close();
+		
+		boolean cont = true;
+		
+		while (cont) {
+			HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]);
+			
+			hg.println();
+			hg.println("Vill du spela igen?" + "\n" + "y för ja, och n för nej");
+			char c = hg.nextChar();
+			if (c == 'n') {
+				cont = false;
+			}
+			
+			hg.close();
+		}
 	}
 
 	public static void fill(String f) {

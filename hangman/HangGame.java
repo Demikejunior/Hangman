@@ -6,7 +6,7 @@ public class HangGame {
 	public static String reverseWord;
 	public static int lives;
 	public static HangmanConsoleWindow hcw;
-	public static String guessed = "";
+	public static String guessed;
 
 	public HangGame(String initWord) {
 
@@ -14,6 +14,7 @@ public class HangGame {
 		lives = 11;
 		word = initWord.toLowerCase();
 		reverseWord = reverse(initWord);
+		guessed = "";
 		hcw.println("Välkommen till hänga gubben! \r\n" + "Du har " + lives + " liv" + "\n"
 				+ "Klicka på en knapp för att gå vidare");
 		hcw.nextChar();
@@ -29,15 +30,15 @@ public class HangGame {
 		lives--;
 	}
 
-	public static void print(String tP) {
+	public void print(String tP) {
 		hcw.print(tP);
 	}
 
-	public static void println(String tP) {
+	public void println(String tP) {
 		hcw.println(tP);
 	}
 
-	public static void println() {
+	public void println() {
 		hcw.println();
 	}
 
@@ -104,7 +105,7 @@ public class HangGame {
 	}
 
 	private static void win() {
-		lives = -1;
+		lives = 100;
 		paint();
 	}
 
@@ -126,7 +127,7 @@ public class HangGame {
 		String obj = "";
 
 		switch (lives) {
-		case -1:
+		case 100:
 			obj += "(Yay!) ___      \n";
 			obj += "    \\ /^ ^\\   \n";
 			obj += "      \\_U_/    \n";
@@ -139,6 +140,8 @@ public class HangGame {
 			obj += "   ___________  \n";
 			obj += " CONGRATULATIONS\n";
 			obj += "     YOU WON      ";
+			obj += "\n";
+			obj += " Ordet var: " + word;
 			break;
 		case 0:
 			obj += "    ______         \n";
@@ -279,9 +282,9 @@ public class HangGame {
 			break;
 		}
 		
-
 		hcw.println(obj);
-		if (lives > 0) {
+		
+		if (lives > 0 && lives < 15) {
 			hcw.println(message);
 			show();
 			if (guessed.length() > 0) {
@@ -290,14 +293,16 @@ public class HangGame {
 				hcw.println("Gissa på en bokstav");
 			}
 			guess();
-		} else {
-			hcw.nextChar();
 		}
 
 	}
 	
 	public void close() {
 		hcw.exit();
+	}
+
+	public char nextChar() {
+		return hcw.nextChar();
 	}
 
 }

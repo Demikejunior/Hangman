@@ -19,7 +19,7 @@ public class HangmanConsoleWindow {
 	private static final Color BACKGROUND_COLOR = Color.BLACK;
 	private static final Color TEXT_COLOR = Color.WHITE;
 	private static final String FONT = "Lucida Console";
-	private static final int FONT_SIZE = 40;
+	private static final int FONT_SIZE = 30;
 	private static final String TITLE = "Hangman Console Window";
 
 	private JTextArea textarea;
