@@ -19,16 +19,6 @@ public class HangGame {
 		hcw.nextChar();
 		paint();
 
-//		for (int i = lives; i > 0; i++) {
-//			paint();
-//			loseLife();
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//
-//			}
-//		}
-
 	}
 
 	public int lives() {
@@ -156,8 +146,8 @@ public class HangGame {
 			obj += "   |      |        \n";
 			obj += "   |      |        \n";
 			obj += "   |      |        \n";
-			obj += "  /|\\___|\\X/|__   \n";
-			obj += " |       /|\\   |  \n";
+			obj += "  /|\\___  X  __   \n";
+			obj += " |      |/|\\|  |  \n";
 			obj += " |       / \\   |  \n";
 			obj += " |   DU  DOG   |   \n";
 			obj += "\n";
@@ -302,9 +292,12 @@ public class HangGame {
 			guess();
 		} else {
 			hcw.nextChar();
-			hcw.exit();
 		}
 
+	}
+	
+	public void close() {
+		hcw.exit();
 	}
 
 }
