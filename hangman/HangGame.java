@@ -104,11 +104,19 @@ public class HangGame {
 
 	}
 
+	/**
+	 * Sätter liv till antalet som visat att man vunnit, sedan mål
+	 */
 	private static void win() {
 		lives = 100;
 		paint();
 	}
 
+	/**
+	 * Kollar skillnaden mellan ordet man ska gissa, \n
+	 * och de delar man har gissat, \n\n
+	 * om man har gissat fullt vinner man, om inte skrivs de delar man har gissat ut.
+	 */
 	public static void show() {
 		if (!reverseWord.equals(word)) {
 			hcw.println(reverseWord);
@@ -117,10 +125,25 @@ public class HangGame {
 		}
 	}
 
+	/**
+	 * Skriver ut spelarens situation, \n
+	 * vad den har gissat på, \n
+	 * vilka delar av ordet den har gissat rätt, \n
+	 * samt en maning och ett tillfälle att gissa
+	 */
 	public static void paint() {
 		paint("");
 	}
 
+	/**
+	 * Skriver ut spelarens situation, \n
+	 * vad den har gissat på, \n
+	 * vilka delar av ordet den har gissat rätt, \n
+	 * ett meddelande som skickas med, \n
+	 * samt en maning och ett tillfälle att gissa
+	 * 
+	 * @param message
+	 */
 	public static void paint(String message) {
 		hcw.clear();
 
@@ -283,10 +306,10 @@ public class HangGame {
 		}
 		
 		hcw.println(obj);
+		hcw.println(message);
+		show();
 		
 		if (lives > 0 && lives < 15) {
-			hcw.println(message);
-			show();
 			if (guessed.length() > 0) {
 				hcw.println("Du har gissat på " + guessed);
 			} else {
@@ -297,10 +320,17 @@ public class HangGame {
 
 	}
 	
+	/**
+	 * Stänger konsolen
+	 */
 	public void close() {
 		hcw.exit();
 	}
 
+	/**
+	 * Ger tillbaka nästa char som skrivs in i konsolen
+	 * @return
+	 */
 	public char nextChar() {
 		return hcw.nextChar();
 	}

@@ -31,6 +31,11 @@ public class Play {
 		}
 	}
 
+	/**
+	 * Fyller ord med orden i filen f
+	 * 
+	 * @param f
+	 */
 	public static void fill(String f) {
 		Scanner sc;
 		try {
@@ -51,6 +56,12 @@ public class Play {
 
 	}
 
+	/**
+	 * Ger antal rader i filen filename
+	 * 
+	 * @param filename
+	 * @return l
+	 */
 	public static int countLines(String filename) {
 		int l = 0;
 		try {
