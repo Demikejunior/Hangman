@@ -22,22 +22,43 @@ public class HangGame {
 
 	}
 
+	/**
+	 * Skriver ut antal kvarvarande liv
+	 * 
+	 * @return
+	 */
 	public int lives() {
 		return lives;
 	}
 
+	/**
+	 * Sänker antal kvarvarande liv med 1.
+	 */
 	private static void loseLife() {
 		lives--;
 	}
 
+	/**
+	 * Skriver ut tP i konsolen, med nästa utskrift på samma rad.
+	 * 
+	 * @param tP
+	 */
 	public void print(String tP) {
 		hcw.print(tP);
 	}
 
+	/**
+	 * Skriver ut tP i konsolen, med nästa utskrift på nästa rad.
+	 * 
+	 * @param tP
+	 */
 	public void println(String tP) {
 		hcw.println(tP);
 	}
 
+	/**
+	 * Skriver ut en tom rad i konsolen.
+	 */
 	public void println() {
 		hcw.println();
 	}
@@ -60,17 +81,25 @@ public class HangGame {
 
 	}
 
+	/**
+	 * Fixar allt angående gissningar.
+	 */
 	public static void guess() {
 
+		// Din gissning
 		String G = hcw.nextString().toLowerCase();
 
+		// Kollar om gissningen är en bokstav eller inte
 		if (G.length() == 1) {
-			char g = G.charAt(0);
+			
+			char g = G.charAt(0); // Skapar en char ifrån gissningen
 			boolean exist = false;
-			guessed += g + " ";
-			for (int i = 0; i < word.length(); i++) {
+			guessed += g + " "; // Lägger till gissningen i listan av dina gissningar
+			for (int i = 0; i < word.length(); i++) { // Går igenom ordet som ska gissas och kollar om någon / något av bokstäverna är det som gissades
 				if (g == word.charAt(i)) {
-					exist = true;
+					exist = true; // Gör att du inte förlorar ett liv, eftersom att bokstaven du gissade fanns
+					
+					// Gör om reverseWord till att ha med gissnigen
 					String s = "";
 
 					if (i > 0) {
@@ -93,8 +122,8 @@ public class HangGame {
 				loseLife();
 				paint("Du gissade fel!");
 			}
-		} else {
-			if (G.equals(word)) {
+		} else { // Om gissningen var mer än en bokstav
+			if (G.equals(word)) { // Kollar om det som gissades är samma som ordet som ska gissas
 				win();
 			} else {
 				hcw.println("Gissa bokstäver istället");
@@ -105,7 +134,8 @@ public class HangGame {
 	}
 
 	/**
-	 * Sätter liv till antalet som visat att man vunnit, sedan mål
+	 * Sätter liv till antalet som visat att man vunnit, \n
+	 * sedan utför paint()
 	 */
 	private static void win() {
 		lives = 100;
