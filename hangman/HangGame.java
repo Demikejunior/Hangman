@@ -99,16 +99,18 @@ public class HangGame {
 				if (g == word.charAt(i)) {
 					exist = true; // Gör att du inte förlorar ett liv, eftersom att bokstaven du gissade fanns
 					
-					// Gör om reverseWord till att ha med gissnigen
+					
+					// Följande gör om reverseWord till att ha med gissnigen
+					
 					String s = "";
 
-					if (i > 0) {
+					if (i > 0) { // Om g ligger efter första karaktären lägg till alla delar innan g till s
 						s += reverseWord.substring(0, i);
 					}
 
-					s += g;
+					s += g; // lägg till g till s
 
-					if (i <= word.length() - 1) {
+					if (i <= word.length() - 1) { // Om g ligger före sista karaktären lägg till alla delar efter g till s
 						s += reverseWord.substring(i + 1);
 					}
 
@@ -134,7 +136,7 @@ public class HangGame {
 	}
 
 	/**
-	 * Sätter liv till antalet som visat att man vunnit, \n
+	 * Sätter liv till antalet som visat att man vunnit, <br>
 	 * sedan utför paint()
 	 */
 	private static void win() {
@@ -143,9 +145,9 @@ public class HangGame {
 	}
 
 	/**
-	 * Kollar skillnaden mellan ordet man ska gissa, \n
-	 * och de delar man har gissat, \n\n
-	 * om man har gissat fullt vinner man, om inte skrivs de delar man har gissat ut.
+	 * Kollar skillnaden mellan ordet man ska gissa, <br>
+	 * och de delar man har gissat. <br><br>
+	 * Om man har gissat allt vinner man, om inte skrivs de delar man har gissat ut.
 	 */
 	public static void show() {
 		if (!reverseWord.equals(word)) {
@@ -156,9 +158,9 @@ public class HangGame {
 	}
 
 	/**
-	 * Skriver ut spelarens situation, \n
-	 * vad den har gissat på, \n
-	 * vilka delar av ordet den har gissat rätt, \n
+	 * Skriver ut spelarens situation, <br>
+	 * vad den har gissat på, <br>
+	 * vilka delar av ordet den har gissat rätt, <br>
 	 * samt en maning och ett tillfälle att gissa
 	 */
 	public static void paint() {
@@ -166,10 +168,10 @@ public class HangGame {
 	}
 
 	/**
-	 * Skriver ut spelarens situation, \n
-	 * vad den har gissat på, \n
-	 * vilka delar av ordet den har gissat rätt, \n
-	 * ett meddelande som skickas med, \n
+	 * Skriver ut spelarens situation, <br>
+	 * vad den har gissat på, <br>
+	 * vilka delar av ordet den har gissat rätt, <br>
+	 * ett meddelande som skickas med, <br>
 	 * samt en maning och ett tillfälle att gissa
 	 * 
 	 * @param message
@@ -335,14 +337,14 @@ public class HangGame {
 			break;
 		}
 		
-		hcw.println(obj);
-		hcw.println(message);
-		show();
+		hcw.println(obj); // Skriver ut visuella delen
+		hcw.println(message); // Skriver ut meddelandet som skickas med
+		show(); // Visar bokstäverna du har gissat rätt i de platser som de ska ligga
 		
-		if (lives > 0 && lives < 15) {
-			if (guessed.length() > 0) {
+		if (lives > 0 && lives < 15) { // Om man inte har vunnit eller förlorat
+			if (guessed.length() > 0) { // Om det har gissats någon bokstav skrivs de bokstäver ut
 				hcw.println("Du har gissat på " + guessed);
-			} else {
+			} else { // Om det inte har gissats på några bokstäver manas användaren att göra det
 				hcw.println("Gissa på en bokstav");
 			}
 			guess();

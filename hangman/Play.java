@@ -11,24 +11,26 @@ public class Play {
 
 	public static void main(String[] args) {
 
-		fill("hangman/words.txt");
+		fill("hangman/words.txt"); // Fyller ord med orden från textfilen words.txt
 
-		Random generator = new Random();
+		Random generator = new Random(); // Krävs för att man ska kunna ta ett slumpvalt ord från ord
 		
 		boolean cont = true;
 		
-		while (cont) {
-			HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]);
+		while (cont) { // Ser till att man kan fortsätta i fallet att man vill göra det
+			HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]); // Börjar spelet med ett slumpvalt ord från ord
 			
 			hg.println();
 			hg.println("Vill du spela igen?" + "\n" + "y för ja, och n för nej");
 			char c = hg.nextChar();
-			if (c == 'n') {
+			if (c == 'n') { // Avslutar spelet om man skriver 'n'
 				cont = false;
 			}
 			
 			hg.close();
 		}
+		
+		
 	}
 
 	/**
@@ -42,12 +44,12 @@ public class Play {
 			sc = new Scanner(new File(f));
 			int a = 0;
 
-			a = countLines(f);
+			a = countLines(f); // Kollar hur många rader som finns i filen f
 
-			ord = new String[a];
+			ord = new String[a]; // Initierar ord med längden a
 
 			for (int i = 0; i < a; i++) {
-				ord[i] = sc.nextLine();
+				ord[i] = sc.nextLine(); // Fyller ord med alla ord i filen f
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
@@ -60,7 +62,7 @@ public class Play {
 	 * Ger antal rader i filen filename
 	 * 
 	 * @param filename
-	 * @return l
+	 * @return lines
 	 */
 	public static int countLines(String filename) {
 		int l = 0;
