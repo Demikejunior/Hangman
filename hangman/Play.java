@@ -14,23 +14,23 @@ public class Play {
 		fill("hangman/words.txt"); // Fyller ord med orden från textfilen words.txt
 
 		Random generator = new Random(); // Krävs för att man ska kunna ta ett slumpvalt ord från ord
-		
+
 		boolean cont = true;
-		
+
 		while (cont) { // Ser till att man kan fortsätta i fallet att man vill göra det
-			HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]); // Börjar spelet med ett slumpvalt ord från ord
-			
+			HangGame hg = new HangGame(ord[generator.nextInt(ord.length)]); // Börjar spelet med ett slumpvalt ord från
+																			// ord
+
 			hg.println();
 			hg.println("Vill du spela igen?" + "\n" + "y för ja, och n för nej");
 			char c = hg.nextChar();
 			if (c == 'n') { // Avslutar spelet om man skriver 'n'
 				cont = false;
 			}
-			
+
 			hg.close();
 		}
-		
-		
+
 	}
 
 	/**

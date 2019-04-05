@@ -91,17 +91,17 @@ public class HangGame {
 
 		// Kollar om gissningen är en bokstav eller inte
 		if (G.length() == 1) {
-			
+
 			char g = G.charAt(0); // Skapar en char ifrån gissningen
 			boolean exist = false;
 			guessed += g + " "; // Lägger till gissningen i listan av dina gissningar
-			for (int i = 0; i < word.length(); i++) { // Går igenom ordet som ska gissas och kollar om någon / något av bokstäverna är det som gissades
+			for (int i = 0; i < word.length(); i++) { // Går igenom ordet som ska gissas och kollar om någon / något av
+														// bokstäverna är det som gissades
 				if (g == word.charAt(i)) {
 					exist = true; // Gör att du inte förlorar ett liv, eftersom att bokstaven du gissade fanns
-					
-					
+
 					// Följande gör om reverseWord till att ha med gissnigen
-					
+
 					String s = "";
 
 					if (i > 0) { // Om g ligger efter första karaktären lägg till alla delar innan g till s
@@ -110,7 +110,8 @@ public class HangGame {
 
 					s += g; // lägg till g till s
 
-					if (i <= word.length() - 1) { // Om g ligger före sista karaktären lägg till alla delar efter g till s
+					if (i <= word.length() - 1) { // Om g ligger före sista karaktären lägg till alla delar efter g till
+													// s
 						s += reverseWord.substring(i + 1);
 					}
 
@@ -146,7 +147,8 @@ public class HangGame {
 
 	/**
 	 * Kollar skillnaden mellan ordet man ska gissa, <br>
-	 * och de delar man har gissat. <br><br>
+	 * och de delar man har gissat. <br>
+	 * <br>
 	 * Om man har gissat allt vinner man, om inte skrivs de delar man har gissat ut.
 	 */
 	public static void show() {
@@ -336,11 +338,11 @@ public class HangGame {
 		default:
 			break;
 		}
-		
+
 		hcw.println(obj); // Skriver ut visuella delen
 		hcw.println(message); // Skriver ut meddelandet som skickas med
 		show(); // Visar bokstäverna du har gissat rätt i de platser som de ska ligga
-		
+
 		if (lives > 0 && lives < 15) { // Om man inte har vunnit eller förlorat
 			if (guessed.length() > 0) { // Om det har gissats någon bokstav skrivs de bokstäver ut
 				hcw.println("Du har gissat på " + guessed);
@@ -351,7 +353,7 @@ public class HangGame {
 		}
 
 	}
-	
+
 	/**
 	 * Stänger konsolen
 	 */
@@ -361,6 +363,7 @@ public class HangGame {
 
 	/**
 	 * Ger tillbaka nästa char som skrivs in i konsolen
+	 * 
 	 * @return
 	 */
 	public char nextChar() {
