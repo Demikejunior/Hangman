@@ -341,15 +341,18 @@ public class HangGame {
 
 		hcw.println(obj); // Skriver ut visuella delen
 		hcw.println(message); // Skriver ut meddelandet som skickas med
-		show(); // Visar bokstäverna du har gissat rätt i de platser som de ska ligga
-
+		
 		if (lives > 0 && lives < 15) { // Om man inte har vunnit eller förlorat
+			show(); // Visar bokstäverna du har gissat rätt i de platser som de ska ligga
+
 			if (guessed.length() > 0) { // Om det har gissats någon bokstav skrivs de bokstäver ut
 				hcw.println("Du har gissat på " + guessed);
 			} else { // Om det inte har gissats på några bokstäver manas användaren att göra det
 				hcw.println("Gissa på en bokstav");
 			}
-			guess();
+			if (lives > 0 && lives < 15) {
+				guess();
+			}
 		}
 
 	}
